@@ -17,17 +17,24 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  this.board = [];
+  for(let y=0; y < this.HEIGHT; y++){
+    this.board.push(Array.from({length:this.WIDTH}));
+  }
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
+  const htmlBoard = document.getElementById('board');
+  board.innerHTML = '';
 
   // TODO: add comment for this code
   let top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
+  //grab table row and add click event listener
 
   for (let x = 0; x < WIDTH; x++) {
     let headCell = document.createElement("td");
@@ -35,6 +42,7 @@ function makeHtmlBoard() {
     top.append(headCell);
   }
   htmlBoard.append(top);
+  //based off WIDTH set the id and append the head of the cell
 
   // TODO: add comment for this code
   for (let y = 0; y < HEIGHT; y++) {
@@ -47,6 +55,7 @@ function makeHtmlBoard() {
     htmlBoard.append(row);
   }
 }
+//append the cell rows
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
